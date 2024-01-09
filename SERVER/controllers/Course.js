@@ -12,6 +12,7 @@ require("dotenv").config();
 exports.createCourse = async (req, res) => {
     try {
         //check for instructor
+        //for storing the id of instructor int the course db
         const userId = req.user.id;
 
         //fetch Data
@@ -20,18 +21,18 @@ exports.createCourse = async (req, res) => {
             courseDescription,
             whatYouWillLearn,
             price,
-            tag: _tag,
+            tag,
             category,
             status,
-            instructions: _instructions,
+            instructions,
         } = req.body;
 
         //get thumbnail image from request files
         const thumbnail = req.files.thumbnailImage;
 
         // Convert the tag and instructions from stringified Array to Array
-        const tag = JSON.parse(_tag)
-        const instructions = JSON.parse(_instructions)
+        // const tag = JSON.parse(_tag)
+        // const instructions = JSON.parse(_instructions)
 
         console.log("tag", tag)
         console.log("instructions", instructions)

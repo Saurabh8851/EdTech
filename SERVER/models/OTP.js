@@ -19,8 +19,8 @@ const OTPSchema = new mongoose.Schema({
 
 
 });
-
-
+//Schema k baad and model se pehle yeh code likhna hai
+//we write this code in otp model section because it is a pre middleware and pre middleware code is written in model section with given model
 //function --> to send otp email
 async function sendVerificationEmail(email, otp) {
     // Create a transporter to send emails
@@ -43,6 +43,7 @@ async function sendVerificationEmail(email, otp) {
 }
 
 // Define a post-save hook to send email after the document has been saved
+//Document save hone se just pehaleyeh wala code run hona chaiye
 OTPSchema.pre("save", async function (next) {
     console.log("New document saved to database");
 

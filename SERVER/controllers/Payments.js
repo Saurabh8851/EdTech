@@ -29,7 +29,7 @@ exports.capturePayments = async (req, res) => {
     for (const course_id of courses) {
         let course
         try {
-            //find he course by its id
+            //find the course by its id
             course = await Course.findById(course_id);
 
             //validattion 
@@ -69,6 +69,10 @@ exports.capturePayments = async (req, res) => {
         amount: amount * 100,
         currency: "INR",
         receipt: Math.random(Date.now()).toString(),
+        //notes:{
+        //     courseId: course_id,
+        //     userId,
+        // }
 
     };
 
@@ -80,6 +84,12 @@ exports.capturePayments = async (req, res) => {
         return res.status(200).json({
             success: true,
             data: paymentResponse,
+            // courseName: course.courseName,
+            // courseDescription: course.courseDescription,
+            // thumbnail: course.thumbnail,
+            // orderId: paymentResponse.id,
+            // currency: paymentResponse.currency,
+            // amunt: paymentResponse.amount,
         });
     }
     catch (error) {
@@ -96,9 +106,9 @@ exports.capturePayments = async (req, res) => {
 //verify Signature of Razorpay and Server
 //using webhook
 // exports.verifySignature = async (req, res) => {
-//     const webhookSecret = "12345678";
+//     const webhookSecret = "12345678";//server ka secret
 
-//     const signature = req.headers["x-razorpay-signature"];
+//     const signature = req.headers["x-razorpay-signature"];//This signature is coming from razrorpay
 
 //     const shasum = crypto.createHmac("sha256", webhookSecret);
 //     shasum.update(JSON.stringify(req.body));
@@ -128,7 +138,7 @@ exports.capturePayments = async (req, res) => {
 
 //             console.log(enrolledCourse);
 
-//             //find the student andadd the course to their list enrolled courses me 
+//             //find the student and add the course to their list enrolled courses me 
 //             const enrolledStudent = await User.findOneAndUpdate(
 //                 { _id: userId },
 //                 { $push: { courses: courseId } },

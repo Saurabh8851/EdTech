@@ -104,7 +104,7 @@ exports.getAverageRating = async (req, res) => {
     }
     catch (error) {
         console.log(error);
-        return res.status(500).json({
+        return res.status(500).json({ 
             success: false,
             message: "Failed to retrieve the rating for the course",
             error: error.message,

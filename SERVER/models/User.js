@@ -43,7 +43,7 @@ const UserSchema = new mongoose.Schema({
     courses: [
         {
             type: mongoose.Schema.Types.ObjectId,
-            ref: "Course",//means Course ko reference
+            ref: "Course",//means Course ka reference
         }
     ],
     image: {

@@ -3,6 +3,8 @@ require("dotenv").config();
 
 const mailSender = async (email, title, body) => {
     try {
+
+        //Step1-> Create a node mailer transporter
         let transporter = nodemailer.createTransport({
             host: process.env.MAIL_HOST,
             auth: {
@@ -12,6 +14,7 @@ const mailSender = async (email, title, body) => {
             secure: false,
         })
 
+        //Step2--> Send Mail
         let info = await transporter.sendMail({
             from: 'LEARN4CODE || Education You Need',// sender address
             to: `${email}`, // list of receivers
